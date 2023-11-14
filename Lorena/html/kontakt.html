@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-shop mobiteli</title>
+    <!-- link rel="stylesheet" href="../css/stil.css" -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <script>
+        function ispisiPodatke(){
+            let tel=document.getElementById("brojtelefona").innerHTML;
+            document.getElementById("ispis").innerHTML = tel;
+        }
+        function posalji()
+        {
+            //alert("poziva se")
+            let email=document.getElementById("email").value;
+            let poruka=document.getElementById("poruka").value;
+
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function()
+            {
+                if(httpRequest.readyState==4)
+                {
+                    document.getElementById("korisnik_Unos").innerHTML=httpRequest.responseText;
+                }
+            }
+            httpRequest.open("GET","../php/obrada.php?email="+email+"&poruka="+poruka);
+            httpRequest.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="w3-container">
+        <nav class="navigacija" id="navigacija">
+            <div class="w3-bar w3-black">
+                <a href="index.html" class="w3-bar-item w3-button">Početna stranica</a>
+                <a href="sve_ponude.html" class="w3-bar-item w3-button">Sve ponude</a>
+                <a href="" class="w3-bar-item w3-button">Kontakt</a>
+            </div>               
+        </nav>
+    </div>
+    <div class="w3-container">
+    <h1>Web shop - mobiteli</h1>    
+
+        <h2>Kontakt</h2>
+        <div class="w3-border">
+            <div id="brojtelefona">
+                Broj telefona: 111 222
+            </div>
+            <div>Adresa: Vukovarska 58, Rijeka</div>
+        </div>
+    </div>
+    <div class="w3-container">
+    <div class="w3-card-4">
+        <div>
+            Ako želite postaviti upit ili ostaviti poruku, kontaktirat ćemo Vas na unesenu e-mail adresu.
+        </div>
+        <form class="w3-red w3-third w3-container">
+        <label for="">Unesite Vašu e-mail adresu:</label>
+        <input type="email" name="" id="email" class="w3-input w3-border">
+        <label for="">Unesite poruku</label>
+        <textarea name="" id="poruka" class="w3-input w3-border"></textarea>
+        <input type="button" value="Pošalji" class="w3-btn w3-black" onclick="posalji()">
+        </form>
+    </div>
+</div>
+    <div id="korisnik_unos"></div>
+    <div id="ispis"></div>
+    <script>
+        document.write("<div class='w3-container w3-black'>");
+        document.write("Web sjedište <i>Web-shop mobiteli</i>, izrađeno je u sklopu kolegija Programiranje za internet");
+        document.write("</div>");
+        ispisiPodatke();
+    </script>
+</body>
+</html>
