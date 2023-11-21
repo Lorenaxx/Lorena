@@ -11,18 +11,16 @@
             let tel=document.getElementById("brojtelefona").innerHTML;
             document.getElementById("ispis").innerHTML = tel;
         }
-        function posalji()
-        {
-            //alert("poziva se")
-            let email=document.getElementById("email").value;
-            let poruka=document.getElementById("poruka").value;
-
+        function posalji(){
+            //alert("Poziva se funkcija");
+            let email = document.getElementById("email").value;
+            //alert(email);
+            let poruka = document.getElementById("poruka").value;
+            
             const httpRequest = new XMLHttpRequest();
-            httpRequest.onreadystatechange = function()
-            {
-                if(httpRequest.readyState==4)
-                {
-                    document.getElementById("korisnik_Unos").innerHTML=httpRequest.responseText;
+            httpRequest.onreadystatechange = function(){
+                if (httpRequest.readyState==4) {
+                    document.getElementById("korisnik_unos").innerHTML=httpRequest.responseText; 
                 }
             }
             httpRequest.open("GET","../php/obrada.php?email="+email+"&poruka="+poruka);
